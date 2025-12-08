@@ -19,6 +19,16 @@ import { Product7 } from './productViewOwnPage/engagement-rings/product7/product
 import { Product8 } from './productViewOwnPage/engagement-rings/product8/product8';
 import { Product9 } from './productViewOwnPage/engagement-rings/product9/product9';
 
+import { WeddingBandProduct1 } from './productViewOwnPage/wedding-bands/product1/product1';
+import { WeddingBandProduct2 } from './productViewOwnPage/wedding-bands/product2/product2';
+import { WeddingBandProduct3 } from './productViewOwnPage/wedding-bands/product3/product3';
+import { WeddingBandProduct4 } from './productViewOwnPage/wedding-bands/product4/product4';
+import { WeddingBandProduct5 } from './productViewOwnPage/wedding-bands/product5/product5';
+import { WeddingBandProduct6 } from './productViewOwnPage/wedding-bands/product6/product6';
+import { WeddingBandProduct7 } from './productViewOwnPage/wedding-bands/product7/product7';
+import { WeddingBandProduct8 } from './productViewOwnPage/wedding-bands/product8/product8';
+import { WeddingBandProduct9 } from './productViewOwnPage/wedding-bands/product9/product9';
+
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: Home },
@@ -40,4 +50,13 @@ export const routes: Routes = [
   { path: '1ct-heart-cut-solitaire-ring', component: Product7 },
   { path: '1ct-pear-cut-solitaire-ring', component: Product8 },
   { path: '1ct-assher-cut-solitaire-ring', component: Product9 }
+  ,{ path: 'classic-platinum-wedding-band', component: WeddingBandProduct1 }
+  ,{ path: 'titanium-satin-band', component: WeddingBandProduct2 }
+  ,{ path: 'rose-gold-matte-band', component: WeddingBandProduct3 }
+  ,{ path: 'white-gold-hammered-band', component: WeddingBandProduct4 }
+  ,{ path: 'classic-platinum-band', component: WeddingBandProduct5 }
+  ,{ path: 'hammered-gold-band', component: WeddingBandProduct6 }
+  ,{ path: 'matte-white-gold-band', component: WeddingBandProduct7 }
+  ,{ path: 'sculpted-edge-band', component: WeddingBandProduct8 }
+  ,{ path: 'satin-finish-band', component: WeddingBandProduct9 }
 ];

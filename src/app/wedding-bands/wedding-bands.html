@@ -57,7 +57,7 @@
     <div class="container">
       <div class="weddingbands-styles-grid">
         @for (weddingBands of weddingBandsStyles; track weddingBands.id) {
-          <a class="weddingband-style-card" [routerLink]="['/product', weddingBands.id]">
+          <a class="weddingband-style-card" [routerLink]="[weddingBands.src]">
             <div class="weddingband-style-image">
               <img [src]="'assets/images/' + weddingBands.image" [alt]="weddingBands.name">
             </div>

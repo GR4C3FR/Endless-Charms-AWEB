@@ -1,0 +1,97 @@
+<!-- Navigation Header -->
+<header class="main-header">
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-links">
+        <a routerLink="/home" class="nav-link">HOME</a>
+        <div class="nav-item">
+          <span class="nav-link">SHOP</span>
+          <div class="dropdown-menu">
+            <a routerLink="/engagement-rings">Engagement Rings</a>
+            <a routerLink="/wedding-bands">Wedding Bands</a>
+            <a routerLink="/necklace">Necklace</a>
+            <a routerLink="/bracelets">Bracelets</a>
+            <a routerLink="/earrings">Earrings</a>
+          </div>
+        </div>
+        <a routerLink="/contact" class="nav-link">CONTACT</a>
+        <a routerLink="/about" class="nav-link">ABOUT</a>
+      </div>
+      <a routerLink="/home" class="logo">
+        <img src="logo.png" alt="Endless Charms Logo" class="logo-img">
+      </a>
+      <div class="nav-icons">
+        <button class="icon-btn" routerLink="/cart">
+          <img src="bag.png" alt="Shopping Bag" class="bag-icon">
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="product-detail-container">
+  <div class="product-left">
+    <div class="product-image-wrapper">
+      <img [src]="'assets/images/' + product.image" [alt]="product.name" class="product-image">
+    </div>
+  </div>
+
+  <div class="product-right">
+    <h1 class="product-title">{{ product.name }}</h1>
+    <p class="product-price">${{ product.price }} ({{ selectedMetal }})</p>
+
+    <div class="product-section">
+      <h3 class="section-title">Metal Type</h3>
+      <p class="section-description">Final price may vary depending on your selected metal type.</p>
+      <div class="option-buttons">
+        <button *ngFor="let metal of product.metalTypes" 
+                [class.active]="selectedMetal === metal"
+                (click)="selectedMetal = metal"
+                class="option-btn">
+          {{ metal }}
+        </button>
+      </div>
+    </div>
+
+    <div class="product-section">
+      <h3 class="section-title">Finish</h3>
+      <p class="section-description">Choose your preferred finish.</p>
+      <div class="option-buttons">
+        <button *ngFor="let finish of product.finishTypes"
+                [class.active]="selectedFinish === finish"
+                (click)="selectedFinish = finish"
+                class="option-btn">
+          {{ finish }}
+        </button>
+      </div>
+    </div>
+
+    <div class="product-section">
+      <h3 class="section-title">Width</h3>
+      <p class="section-description">Select your desired band width.</p>
+      <div class="option-buttons">
+        <button *ngFor="let width of product.widths"
+                [class.active]="selectedWidth === width"
+                (click)="selectedWidth = width"
+                class="option-btn">
+          {{ width }}
+        </button>
+      </div>
+    </div>
+
+    <div class="product-section">
+      <h3 class="section-title">Ring Size</h3>
+      <p class="section-description">Final price may vary on your ring size.</p>
+      <div class="size-selector">
+        <button (click)="decrementRingSize()" class="size-btn">-</button>
+        <span class="size-value">{{ selectedRingSize }}</span>
+        <button (click)="incrementRingSize()" class="size-btn">+</button>
+      </div>
+    </div>
+
+    <div class="product-section">
+      <p class="section-description">Current Price Indicated Depending on Preference*</p>
+      <button class="buy-now-btn" (click)="addToCart()">BUY NOW</button>
+    </div>
+  </div>
+</div>
