@@ -29,7 +29,44 @@
   </div>
 </header>
 
-<p>bracelets works!</p>
+<div class="main-parent-div">
+  <!-- 1st row -->
+  <section class="row-one">
+    <div class="image-container">
+      <img src="/images/hero-img-bracelets.png" alt="Bracelets" class="hero-image">
+    </div>
+    <div class="text-row-one">
+      <p class="main-text">
+        Find the design that speaks to your love. <br>
+        Shop our collection and visit our social <br>
+        media pages for more styles.
+      </p>
+      <a href="">Visit Us.</a>
+    </div>
+  </section>
+
+  <section class="row-two">
+    <div class="inner-div-row-two">
+      <h1>Bracelets</h1>
+      <p>From everyday bangles to elegant tennis bracelets — explore styles to match any look.</p>
+    </div>
+
+    <div class="container">
+      <div class="bracelet-styles-grid">
+        @for (bracelet of braceletStyles; track bracelet.id) {
+          <a class="bracelet-style-card" [routerLink]="['/product', bracelet.id]">
+            <div class="bracelet-style-image">
+              <img [src]="'assets/images/' + bracelet.image" [alt]="bracelet.name">
+            </div>
+
+            <p class="bracelet-style-label">{{ bracelet.name }}</p>
+            <p class="bracelet-style-price">₱{{ bracelet.price | number }}</p>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+</div>
 
 <!-- Footer -->
 <footer class="main-footer">

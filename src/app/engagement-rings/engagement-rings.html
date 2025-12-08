@@ -29,7 +29,47 @@
   </div>
 </header>
 
-<p>engagement-rings works!</p>
+<div class="main-parent-div">
+  <!-- 1st row -->
+  <section class="row-one">
+    <div class="image-container">
+      <img src="/images/hero-img-engagement-ring.png" alt="Engagement Ring" class="hero-image">
+    </div>
+    <div class="text-row-one">
+      <p class="main-text">
+        Find the design that speaks to your love. <br> 
+        Shop our collection and visit our social media <br>
+        pages for more styles.
+      </p>
+      <a href="">Visit Us.</a>
+    </div>
+  </section>
+
+  <section class="row-two">
+    <div class="inner-div-row-two">
+      <h1>Engagement Rings</h1>
+      <p>Find the perfect engagement ring made just for you. Choose your design, pick your stone, and <br>
+        customize it in 18k or 14k Yellow Gold, White Gold, or Rose Gold. Your choice of diamonds, your style, your moment.
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="ring-styles-grid">
+        @for (ring of ringStyles; track ring.id) {
+          <a class="ring-style-card" [routerLink]="['/product', ring.id]">
+            <div class="ring-style-image">
+              <img [src]="'assets/images/' + ring.image" [alt]="ring.name">
+            </div>
+
+            <p class="ring-style-label">{{ ring.name }}</p>
+            <p class="ring-style-price">₱{{ ring.price | number }}</p>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+
+</div>
 
 <!-- Footer -->
 <footer class="main-footer">

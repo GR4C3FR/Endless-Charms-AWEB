@@ -29,7 +29,44 @@
   </div>
 </header>
 
-<p>earrings works!</p>
+<div class="main-parent-div">
+  <!-- 1st row -->
+  <section class="row-one">
+    <div class="image-container">
+      <img src="/images/hero-img-earrings.png" alt="Earrings" class="hero-image">
+    </div>
+    <div class="text-row-one">
+      <p class="main-text">
+        Find the design that speaks to your love. <br>
+        Shop our collection and visit our social <br>
+        media pages for more styles.
+      </p>
+      <a href="">Visit Us.</a>
+    </div>
+  </section>
+
+  <section class="row-two">
+    <div class="inner-div-row-two">
+      <h1>Earrings</h1>
+      <p>Delicate studs to dramatic chandeliers — find the earring style that completes your look.</p>
+    </div>
+
+    <div class="container">
+      <div class="earrings-styles-grid">
+        @for (earring of earringStyles; track earring.id) {
+          <a class="earrings-style-card" [routerLink]="['/product', earring.id]">
+            <div class="earrings-style-image">
+              <img [src]="'assets/images/' + earring.image" [alt]="earring.name">
+            </div>
+
+            <p class="earrings-style-label">{{ earring.name }}</p>
+            <p class="earrings-style-price">₱{{ earring.price | number }}</p>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+</div>
 
 <!-- Footer -->
 <footer class="main-footer">

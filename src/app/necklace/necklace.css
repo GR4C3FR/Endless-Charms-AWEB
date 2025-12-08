@@ -5,6 +5,327 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@400;700&display=swap');
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Shared product card variables and base rules to keep all product pages consistent */
+:root{
+  --product-card-width: 360px;
+  --product-image-height: 320px;
+  --product-label-size: 14px;
+  --product-price-size: 13px;
+  --brand-color: #620418;
+  --price-color: #8a1b1b;
+}
+
+/* Apply the same sizing and typography to all product card variants */
+.ring-style-card, .bracelet-style-card, .necklace-style-card, .earrings-style-card, .weddingband-style-card{
+  width: var(--product-card-width);
+  text-decoration: none;
+  color: var(--brand-color);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: transform 0.3s;
+}
+
+.ring-style-card:hover, .bracelet-style-card:hover, .necklace-style-card:hover, .earrings-style-card:hover, .weddingband-style-card:hover{
+  transform: translateY(-5px);
+}
+
+.ring-style-image, .bracelet-style-image, .necklace-style-image, .earrings-style-image, .weddingband-style-image{
+  width: 100%;
+  height: var(--product-image-height);
+  border: 1px solid #eee;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s;
+}
+
+.ring-style-card:hover .ring-style-image, .bracelet-style-card:hover .bracelet-style-image, .necklace-style-card:hover .necklace-style-image, .earrings-style-card:hover .earrings-style-image, .weddingband-style-card:hover .weddingband-style-image{
+  box-shadow: 0 5px 20px rgba(98, 4, 24, 0.3);
+}
+
+.ring-style-image img, .bracelet-style-image img, .necklace-style-image img, .earrings-style-image img, .weddingband-style-image img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.ring-style-label, .bracelet-style-label, .necklace-style-label, .earrings-style-label, .weddingband-style-label{
+  font-size: var(--product-label-size);
+  margin-top: 12px;
+  color: var(--brand-color);
+}
+
+.ring-style-price, .bracelet-style-price, .necklace-style-price, .earrings-style-price, .weddingband-style-price{
+  font-size: var(--product-price-size);
+  margin-top: 6px;
+  color: var(--price-color);
+}
+
+.main-parent-div{
+  margin-bottom: 10em;
+}
+
+.row-one{
+  display: flex;
+  align-items: stretch; 
+  justify-content: center;
+  width: 100%;
+  height: 30em;
+}
+
+.image-container{
+  flex: 0 0 50%;
+  max-width: 50%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hero-image{
+  flex: 1 1 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.text-row-one{
+  flex: 0 0 50%;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  box-sizing: border-box;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #620418;
+  color: white;
+  text-align: center;
+  padding: 10em;
+  font-family: 'Kaisei HarunoUmi', serif;
+}
+
+.text-row-one .main-text{
+  font-size: 25px;
+  margin-bottom: 2em;
+}
+
+.text-row-one  a{
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 100px;
+  padding: 1em 3em;
+  width: 230px;
+  font-size: 15px;
+  font-family: 'Kaisei HarunoUmi', serif;
+}
+
+.necklace-styles-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 360px);
+  gap: 48px 48px;
+  justify-content: center;
+  padding: 2rem 0 4rem;
+}
+
+.necklace-style-card{
+  width: 360px;
+  text-decoration: none;
+  color: #620418;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.necklace-style-card{
+  transition: transform 0.3s;
+}
+
+.necklace-style-card:hover{
+  transform: translateY(-5px);
+}
+
+.necklace-style-image{
+  width: 100%;
+  height: 320px;
+  border: 1px solid #eee;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s;
+}
+
+.necklace-style-card:hover .necklace-style-image{
+  box-shadow: 0 5px 20px rgba(98, 4, 24, 0.3);
+}
+
+.necklace-style-image{
+  width: 100%;
+  height: 320px;
+  border: 1px solid #eee;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.necklace-style-image img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.necklace-style-label{
+  font-size: 14px;
+  margin-top: 12px;
+  color: #620418;
+}
+
+.necklace-style-price{
+  font-size: 13px;
+  margin-top: 6px;
+  color: #8a1b1b;
+}
+
+.row-two{
+  margin-top: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.row-two h1{
+  font-size: 55px;
+}
+
+.inner-div-row-two{
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 1.25rem; 
+  box-sizing: border-box;
+  margin: 0 auto 6em;
+}
+
+.inner-div-row-two{
+  color: #620418;
+}
+
+.inner-div-row-two h1{
+  font-family: 'Nuosu SIL', serif;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.6em;
+}
+
+.inner-div-row-two p{
+  font-family: 'Akatab', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4b0f17;
+}
+
+@media (max-width: 900px){
+  .necklace-styles-grid{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .necklace-style-card{ width: auto; }
+}
+
+@media (max-width: 560px){
+  .necklace-styles-grid{ grid-template-columns: 1fr; padding: 1rem 0; }
+}
+
+@media (max-width: 1100px){
+  .row-one{
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .image-container{
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .hero-image{
+    height: auto;
+    object-fit: contain;
+  }
+
+  .text-row-one{
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    padding: 2.5rem 1.25rem;
+  }
+
+  .inner-div-row-two{
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 1.25rem;
+    box-sizing: border-box;
+    margin-bottom: 2.5rem;
+  }
+
+  .row-two h1{ font-size: 36px; }
+
+  .necklace-styles-grid{
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 28px;
+    padding: 1.25rem 0 2rem;
+  }
+
+  .necklace-style-card{ width: auto; }
+  .necklace-style-image{ height: 260px; }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;

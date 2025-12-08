@@ -29,7 +29,46 @@
   </div>
 </header>
 
-<p>necklace works!</p>
+<div class="main-parent-div">
+  <!-- 1st row -->
+  <section class="row-one">
+    <div class="image-container">
+      <img src="/images/hero-img-necklace.png" alt="Necklace" class="hero-image">
+    </div>
+    <div class="text-row-one">
+      <p class="main-text">
+        Find the design that speaks to your love. <br>
+        Shop our collection and visit our social <br>
+        media pages for more styles.
+      </p>
+      <a href="">Visit Us.</a>
+    </div>
+  </section>
+
+  <section class="row-two">
+    <div class="inner-div-row-two">
+      <h1>Necklaces</h1>
+      <p>Explore our curated necklace collections 
+         from delicate pendants to statement pieces. <br>
+         Perfect for everyday wear or special occasions.</p>
+    </div>
+
+    <div class="container">
+      <div class="necklace-styles-grid">
+        @for (necklace of necklaceStyles; track necklace.id) {
+          <a class="necklace-style-card" [routerLink]="['/product', necklace.id]">
+            <div class="necklace-style-image">
+              <img [src]="'assets/images/' + necklace.image" [alt]="necklace.name">
+            </div>
+
+            <p class="necklace-style-label">{{ necklace.name }}</p>
+            <p class="necklace-style-price">₱{{ necklace.price | number }}</p>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+</div>
 
 <!-- Footer -->
 <footer class="main-footer">
