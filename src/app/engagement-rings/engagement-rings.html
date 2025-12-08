@@ -37,11 +37,11 @@
     </div>
     <div class="text-row-one">
       <p class="main-text">
-        Find the design that speaks to your love. <br> 
-        Shop our collection and visit our social media <br>
-        pages for more styles.
+        Find the design that speaks to your love. <br>
+        Shop our collection and visit our social <br>
+        media pages for more styles.
       </p>
-      <a href="">Visit Us.</a>
+      <a href="https://www.facebook.com/profile.php?id=100079908461494" target="_blank">Visit Us.</a>
     </div>
   </section>
 
@@ -58,11 +58,17 @@
         @for (ring of ringStyles; track ring.id) {
           <a class="ring-style-card" [routerLink]="[ring.src]">
             <div class="ring-style-image">
-              <img [src]="'assets/images/' + ring.image" [alt]="ring.name">
+              <img [src]="ring.image" [alt]="ring.name">
             </div>
-
-            <p class="ring-style-label">{{ ring.name }}</p>
-            <p class="ring-style-price">₱{{ ring.price | number }}</p>
+            <div class="ring-style-info">
+              <p class="ring-style-label">{{ ring.name }}</p>
+              <div class="ring-style-footer">
+                <p class="ring-style-price">₱{{ ring.price | number }}</p>
+                <button class="add-to-cart-btn" (click)="$event.preventDefault()">
+                  <img src="bag.png" alt="Add to Cart" class="cart-icon">
+                </button>
+              </div>
+            </div>
           </a>
         }
       </div>
