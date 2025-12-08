@@ -9,6 +9,15 @@ import { WeddingBands } from './wedding-bands/wedding-bands';
 import { Necklace } from './necklace/necklace';
 import { Bracelets } from './bracelets/bracelets';
 import { Earrings } from './earrings/earrings';
+import { Product1 } from './productViewOwnPage/engagement-rings/product1/product1';
+import { Product2 } from './productViewOwnPage/engagement-rings/product2/product2';
+import { Product3 } from './productViewOwnPage/engagement-rings/product3/product3';
+import { Product4 } from './productViewOwnPage/engagement-rings/product4/product4';
+import { Product5 } from './productViewOwnPage/engagement-rings/product5/product5';
+import { Product6 } from './productViewOwnPage/engagement-rings/product6/product6';
+import { Product7 } from './productViewOwnPage/engagement-rings/product7/product7';
+import { Product8 } from './productViewOwnPage/engagement-rings/product8/product8';
+import { Product9 } from './productViewOwnPage/engagement-rings/product9/product9';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,5 +30,14 @@ export const routes: Routes = [
   { path: 'wedding-bands', component: WeddingBands },
   { path: 'necklace', component: Necklace },
   { path: 'bracelets', component: Bracelets },
-  { path: 'earrings', component: Earrings }
+  { path: 'earrings', component: Earrings },
+  { path: '1ct-round-cut-solitaire-ring', component: Product1 },
+  { path: '1ct-princess-cut-solitaire-ring', component: Product2 },
+  { path: '1ct-cushion-cut-solitaire-ring', component: Product3 },
+  { path: '1ct-radiant-cut-solitaire-ring', component: Product4 },
+  { path: '1ct-oval-cut-solitaire-ring', component: Product5 },
+  { path: '1ct-emerald-cut-solitaire-ring', component: Product6 },
+  { path: '1ct-heart-cut-solitaire-ring', component: Product7 },
+  { path: '1ct-pear-cut-solitaire-ring', component: Product8 },
+  { path: '1ct-assher-cut-solitaire-ring', component: Product9 }
 ];
