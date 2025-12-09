@@ -1,8 +1,47 @@
+functionsDirectory = "C:\\Users\\charl\\Desktop\\COLLEGE\\Junior Year\\2ND SEM\\PRELIMS\\AWEB\\Endless-Charms-AWEB\\netlify\\functions"
+functionsDirectoryOrigin = "ui"
+redirectsOrigin = "config"
+headers = []
+
+[functions]
+
+[functions."*"]
+
+[[plugins]]
+origin = "default"
+package = "@netlify/angular-runtime"
+
+[plugins.inputs]
+
 [build]
-  publish = "dist/company-website/browser"
-  command = "ng build --configuration production"
+publish = "C:\\Users\\charl\\Desktop\\COLLEGE\\Junior Year\\2ND SEM\\PRELIMS\\AWEB\\Endless-Charms-AWEB\\dist\\company-website\\browser"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "ng build --configuration production"
+functions = "C:\\Users\\charl\\Desktop\\COLLEGE\\Junior Year\\2ND SEM\\PRELIMS\\AWEB\\Endless-Charms-AWEB\\netlify\\functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
