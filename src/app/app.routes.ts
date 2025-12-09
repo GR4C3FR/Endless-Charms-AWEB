@@ -9,6 +9,7 @@ import { Necklace } from './necklace/necklace';
 import { Bracelets } from './bracelets/bracelets';
 import { Earrings } from './earrings/earrings';
 import { NotFound } from './not-found/not-found';
+import { CheckoutComponent } from './checkout/checkout';
 import { Product1 } from './productViewOwnPage/engagement-rings/product1/product1';
 import { Product2 } from './productViewOwnPage/engagement-rings/product2/product2';
 import { Product3 } from './productViewOwnPage/engagement-rings/product3/product3';
@@ -38,6 +39,7 @@ import { EarringProduct3 } from './productViewOwnPage/earrings/product3/product3
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: Home },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'about', component: About },
   { path: 'contact', component: ContactComponent },
   { path: 'bag', component: Cart },

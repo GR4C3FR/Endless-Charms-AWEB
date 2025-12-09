@@ -72,7 +72,7 @@ export class Product1 {
       caratWeight: this.selectedCarat,
       ringSize: this.selectedRingSize
     });
-    this.router.navigate(['/bag']);
+    this.router.navigate(['/checkout']);
   }
 
   incrementCarat() {

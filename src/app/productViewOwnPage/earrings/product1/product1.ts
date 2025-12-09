@@ -69,7 +69,7 @@ export class EarringProduct1 {
       stone: this.selectedStone,
       caratWeight: this.selectedStoneSize
     });
-    this.router.navigate(['/bag']);
+    this.router.navigate(['/checkout']);
   }
 
   incrementStoneSize() {

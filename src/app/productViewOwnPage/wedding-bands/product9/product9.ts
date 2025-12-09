@@ -87,7 +87,7 @@ export class WeddingBandProduct9 {
         width: this.selectedWidth,
         ringSize: this.selectedRingSize
       });
-      this.router.navigate(['/bag']);
+      this.router.navigate(['/checkout']);
     }
 
     openImagePopup() {
