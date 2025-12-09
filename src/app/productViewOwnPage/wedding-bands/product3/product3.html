@@ -32,6 +32,69 @@
   </div>
 </header>
 
+<!-- Product Detail Section -->
+<section class="product-detail">
+  <div class="container">
+    <div class="product-layout">
+      <div class="product-image-section">
+        <div class="product-image-container" (click)="openImagePopup()">
+          <img [src]="'/' + product.image" [alt]="product.name" class="product-image">
+        </div>
+      </div>
+      <div class="product-info-section">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <p class="product-price">₱{{ product.price | number }}</p>
+        <div class="product-options">
+          <div class="option-group">
+            <label class="option-label">Metal Type <span class="option-note">- Final price may vary depending on your selected metal type.</span></label>
+            <div class="option-buttons">
+              @for (metal of product.metalTypes; track metal) {
+                <button class="option-btn" [class.active]="selectedMetal === metal" (click)="selectedMetal = metal">{{ metal }}</button>
+              }
+            </div>
+          </div>
+          <div class="option-group">
+            <label class="option-label">Finish <span class="option-note">- Choose your preferred finish.</span></label>
+            <div class="option-buttons">
+              @for (finish of product.finishTypes; track finish) {
+                <button class="option-btn" [class.active]="selectedFinish === finish" (click)="selectedFinish = finish">{{ finish }}</button>
+              }
+            </div>
+          </div>
+          <div class="option-group">
+            <label class="option-label">Width <span class="option-note">- Select band width.</span></label>
+            <div class="option-buttons">
+              @for (width of product.widths; track width) {
+                <button class="option-btn" [class.active]="selectedWidth === width" (click)="selectedWidth = width">{{ width }}</button>
+              }
+            </div>
+          </div>
+          <div class="option-group">
+            <label class="option-label">Ring Size <span class="option-note">- Final price may vary on your ring size. (Standard Size)</span></label>
+            <div class="quantity-selector">
+              <button class="qty-btn" (click)="decrementRingSize()">-</button>
+              <span class="qty-value">{{ selectedRingSize }}</span>
+              <button class="qty-btn" (click)="incrementRingSize()">+</button>
+            </div>
+          </div>
+          <p class="price-note">Current Price Indicated Depending on Preference*</p>
+          <button class="add-to-bag-btn" (click)="addToCart()">ADD TO BAG</button>
+          <button class="buy-now-btn" (click)="buyNow()">BUY NOW</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Image Popup Modal -->
+@if (showImagePopup) {
+  <div class="image-popup-overlay" (click)="closeImagePopup()">
+    <div class="image-popup-container">
+      <img [src]="'/' + product.image" [alt]="product.name" class="popup-image">
+    </div>
+  </div>
+}
+
 <!-- Footer -->
 <footer class="main-footer">
   <div class="container">

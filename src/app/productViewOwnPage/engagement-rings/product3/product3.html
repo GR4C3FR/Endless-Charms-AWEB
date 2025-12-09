@@ -38,7 +38,7 @@
     <div class="product-layout">
       <div class="product-image-section">
         <div class="product-image-container" (click)="openImagePopup()">
-          <img [src]="'images/' + product.image" [alt]="product.name" class="product-image">
+          <img [src]="'/' + product.image" [alt]="product.name" class="product-image">
         </div>
       </div>
       
@@ -107,7 +107,7 @@
 @if (showImagePopup) {
   <div class="image-popup-overlay" (click)="closeImagePopup()">
     <div class="image-popup-container">
-      <img [src]="'images/' + product.image" [alt]="product.name" class="popup-image">
+      <img [src]="'/' + product.image" [alt]="product.name" class="popup-image">
     </div>
   </div>
 }

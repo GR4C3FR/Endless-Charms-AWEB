@@ -44,6 +44,7 @@ export class WeddingBandProduct4 {
   selectedWidth: string = this.product.widths[0];
   selectedRingSize: string = this.product.ringSizes[0];
   quantity: number = 1;
+  showImagePopup: boolean = false;
 
   addToCart() {
     this.cartService.addToCart({
@@ -68,5 +69,17 @@ export class WeddingBandProduct4 {
     if (currentIndex > 0) {
       this.selectedRingSize = this.product.ringSizes[currentIndex - 1];
     }
+  }
+
+  buyNow() {
+    this.notificationService.showNotification('Redirecting to checkout...');
+  }
+
+  openImagePopup() {
+    this.showImagePopup = true;
+  }
+
+  closeImagePopup() {
+    this.showImagePopup = false;
   }
 }

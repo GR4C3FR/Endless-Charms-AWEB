@@ -39,34 +39,43 @@ export class WeddingBandProduct7 {
     ringSizes: ['8', '9', '10', '11', '12', '13', '14', '15']
   };
 
-  selectedMetal: string = this.product.metalTypes[0];
-  selectedFinish: string = this.product.finishTypes[0];
-  selectedWidth: string = this.product.widths[0];
-  selectedRingSize: string = this.product.ringSizes[0];
-  quantity: number = 1;
+    selectedMetal: string = this.product.metalTypes[0];
+    selectedFinish: string = this.product.finishTypes[0];
+    selectedWidth: string = this.product.widths[0];
+    selectedRingSize: string = this.product.ringSizes[0];
+    quantity: number = 1;
+    showImagePopup: boolean = false;
 
-  addToCart() {
-    this.cartService.addToCart({
-      id: this.product.id,
-      name: this.product.name,
-      price: this.product.price,
-      image: this.product.image
-    });
-    
-    this.notificationService.showNotification(`${this.product.name} added to bag!`);
-  }
-
-  incrementRingSize() {
-    const currentIndex = this.product.ringSizes.indexOf(this.selectedRingSize);
-    if (currentIndex < this.product.ringSizes.length - 1) {
-      this.selectedRingSize = this.product.ringSizes[currentIndex + 1];
+    addToCart() {
+      this.cartService.addToCart({
+        id: this.product.id,
+        name: this.product.name,
+        price: this.product.price,
+        image: this.product.image
+      });
+      this.notificationService.showNotification(`${this.product.name} added to bag!`);
     }
-  }
 
-  decrementRingSize() {
-    const currentIndex = this.product.ringSizes.indexOf(this.selectedRingSize);
-    if (currentIndex > 0) {
-      this.selectedRingSize = this.product.ringSizes[currentIndex - 1];
+    incrementRingSize() {
+      const currentIndex = this.product.ringSizes.indexOf(this.selectedRingSize);
+      if (currentIndex < this.product.ringSizes.length - 1) {
+        this.selectedRingSize = this.product.ringSizes[currentIndex + 1];
+      }
     }
-  }
-}
+
+      decrementRingSize() {
+        const currentIndex = this.product.ringSizes.indexOf(this.selectedRingSize);
+        if (currentIndex > 0) {
+          this.selectedRingSize = this.product.ringSizes[currentIndex - 1];
+        }
+      }
+      openImagePopup() {
+        this.showImagePopup = true;
+      }
+      closeImagePopup() {
+        this.showImagePopup = false;
+      }
+        buyNow() {
+          this.notificationService.showNotification('Redirecting to checkout...');
+        }
+    }

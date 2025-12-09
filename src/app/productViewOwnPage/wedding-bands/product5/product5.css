@@ -4,6 +4,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* Additional styles from engagement-rings/product1.css would follow here */
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .container {
   max-width: 1200px;
@@ -232,6 +239,232 @@
   fill: white;
 }
 
+/* Product Detail Section */
+.product-detail {
+  padding: 60px 0;
+  background: #fafafa;
+}
+
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.product-image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-image-container {
+  width: 100%;
+  max-width: 500px;
+  border: 2px solid #ddd;
+  padding: 40px;
+  background: white;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.product-image-container:hover {
+  transform: scale(1.02);
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Image Popup Modal */
+.image-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+.image-popup-container {
+  position: relative;
+  max-width: 98%;
+  max-height: 98%;
+  padding: 20px;
+}
+
+.popup-image {
+  max-width: 100%;
+  max-height: 95vh;
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.product-info-section {
+  padding: 20px 0;
+}
+
+.product-title {
+  font-size: 32px;
+  color: #620418;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.product-price {
+  font-size: 18px;
+  color: #620418;
+  margin-bottom: 30px;
+}
+
+.product-options {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-label {
+  font-size: 14px;
+  color: #620418;
+  font-weight: 600;
+}
+
+.option-note {
+  font-size: 12px;
+  color: #666;
+  font-weight: normal;
+}
+
+.option-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.option-btn {
+  padding: 10px 20px;
+  border: 2px solid #ddd;
+  background: white;
+  color: #620418;
+  border-radius: 25px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.option-btn:hover {
+  border-color: #620418;
+  color: #620418;
+}
+
+.option-btn.active {
+  background: #620418;
+  border-color: #620418;
+  color: white;
+}
+
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  padding: 5px 15px;
+  background: white;
+  width: fit-content;
+  max-width: 150px;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  color: #620418;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: opacity 0.3s;
+}
+
+.qty-btn:hover {
+  opacity: 0.7;
+}
+
+.qty-value {
+  font-size: 14px;
+  color: #620418;
+  min-width: 40px;
+  text-align: center;
+}
+
+.price-note {
+  font-size: 13px;
+  color: #666;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.add-to-bag-btn {
+  width: 100%;
+  padding: 15px;
+  background: white;
+  color: #620418;
+  border: 2px solid #620418;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 20px;
+}
+
+.add-to-bag-btn:hover {
+  background: #f5f5f5;
+}
+
+.buy-now-btn {
+  width: 100%;
+  padding: 15px;
+  background: #620418;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 2px;
+}
+
+.buy-now-btn:hover {
+  background: #4a0312;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
@@ -243,6 +476,15 @@
     flex-direction: column;
     gap: 10px;
     text-align: center;
+  }
+
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .product-title {
+    font-size: 24px;
   }
 
   .footer-content {

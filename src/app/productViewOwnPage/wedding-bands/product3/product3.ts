@@ -13,6 +13,7 @@ import { NotificationService } from '../../../services/notification.service';
 })
 export class WeddingBandProduct3 {
   cartCount = 0;
+  showImagePopup: boolean = false;
 
   constructor(
     private cartService: CartService,
@@ -68,5 +69,16 @@ export class WeddingBandProduct3 {
     if (currentIndex > 0) {
       this.selectedRingSize = this.product.ringSizes[currentIndex - 1];
     }
+  }
+  buyNow() {
+    this.notificationService.showNotification('Redirecting to checkout...');
+  }
+
+  openImagePopup() {
+    this.showImagePopup = true;
+  }
+
+  closeImagePopup() {
+    this.showImagePopup = false;
   }
 }
