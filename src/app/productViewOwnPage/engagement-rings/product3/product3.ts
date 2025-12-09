@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import { NotificationService } from '../../../services/notification.service';
 
@@ -16,7 +16,8 @@ export class Product3 {
 
   constructor(
     private cartService: CartService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) {
     this.cartService.cart$.subscribe(() => {
       this.cartCount = this.cartService.getCartCount();
@@ -61,7 +62,17 @@ export class Product3 {
   }
 
   buyNow() {
-    this.notificationService.showNotification('Redirecting to checkout...');
+    this.cartService.addToCart({
+      id: this.product.id,
+      name: this.product.name,
+      price: this.product.price,
+      image: this.product.image,
+      metalType: this.selectedMetal,
+      stone: this.selectedStone,
+      caratWeight: this.selectedCarat,
+      ringSize: this.selectedRingSize
+    });
+    this.router.navigate(['/bag']);
   }
 
   incrementCarat() {
