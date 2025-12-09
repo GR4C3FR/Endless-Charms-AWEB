@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../../services/cart.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-product8',
@@ -10,11 +12,22 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./product8.css'],
 })
 export class Product8 {
+  cartCount = 0;
+
+  constructor(
+    private cartService: CartService,
+    private notificationService: NotificationService
+  ) {
+    this.cartService.cart$.subscribe(() => {
+      this.cartCount = this.cartService.getCartCount();
+    });
+  }
+
   product = {
-    id: 8,
+    id: '8',
     name: '1ct Pear-Cut Solitaire Ring',
     price: 32000,
-    image: '1ct-pear-cut-solitaire-ring.png',
+    image: '1ct Pear-Cut Solitaire Ring.png',
     category: 'rings',
     inStock: true,
     label: '1ct Pear-Cut Solitaire Ring',
@@ -30,24 +43,39 @@ export class Product8 {
   selectedCarat: string = this.product.caratSizes[0];
   selectedRingSize: string = this.product.ringSizes[3];
   quantity: number = 1;
+  showImagePopup: boolean = false;
 
   addToCart() {
-    console.log('Added to cart:', {
-      product: this.product.name,
-      metal: this.selectedMetal,
+    this.cartService.addToCart({
+      id: this.product.id,
+      name: this.product.name,
+      price: this.product.price,
+      image: this.product.image,
+      metalType: this.selectedMetal,
       stone: this.selectedStone,
-      carat: this.selectedCarat,
-      ringSize: this.selectedRingSize,
-      quantity: this.quantity
+      caratWeight: this.selectedCarat,
+      ringSize: this.selectedRingSize
     });
+    
+    this.notificationService.showNotification(`${this.product.name} added to bag!`);
+  }
+
+  buyNow() {
+    this.notificationService.showNotification('Redirecting to checkout...');
   }
 
   incrementCarat() {
-    // Placeholder for carat size increment
+    const currentIndex = this.product.caratSizes.indexOf(this.selectedCarat);
+    if (currentIndex < this.product.caratSizes.length - 1) {
+      this.selectedCarat = this.product.caratSizes[currentIndex + 1];
+    }
   }
 
   decrementCarat() {
-    // Placeholder for carat size decrement
+    const currentIndex = this.product.caratSizes.indexOf(this.selectedCarat);
+    if (currentIndex > 0) {
+      this.selectedCarat = this.product.caratSizes[currentIndex - 1];
+    }
   }
 
   incrementRingSize() {
@@ -62,5 +90,13 @@ export class Product8 {
     if (currentIndex > 0) {
       this.selectedRingSize = this.product.ringSizes[currentIndex - 1];
     }
+  }
+
+  openImagePopup() {
+    this.showImagePopup = true;
+  }
+
+  closeImagePopup() {
+    this.showImagePopup = false;
   }
 }

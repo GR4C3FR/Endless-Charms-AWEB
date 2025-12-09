@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 interface Product {
   id: number;
@@ -30,6 +31,14 @@ interface RingStyle {
   styleUrl: './home.css',
 })
 export class Home {
+  cartCount = 0;
+
+  constructor(private cartService: CartService) {
+    this.cartService.cart$.subscribe(() => {
+      this.cartCount = this.cartService.getCartCount();
+    });
+  }
+
   // Hero carousel data
   currentSlide = 0;
   heroSlides = [
@@ -119,8 +128,12 @@ export class Home {
 
   addToCart(product: Product): void {
     if (product.inStock) {
-      console.log('Added to cart:', product);
-      // Implement cart logic here
+      this.cartService.addToCart({
+        id: `product-${product.id}`,
+        name: product.name,
+        price: product.price,
+        image: product.image
+      });
     }
   }
 

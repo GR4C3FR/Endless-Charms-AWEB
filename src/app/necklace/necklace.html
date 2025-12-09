@@ -9,7 +9,7 @@
           <div class="dropdown-menu">
             <a routerLink="/engagement-rings">Engagement Rings</a>
             <a routerLink="/wedding-bands">Wedding Bands</a>
-            <a routerLink="/necklace">Necklace</a>
+            <a routerLink="/necklaces">Necklaces</a>
             <a routerLink="/bracelets">Bracelets</a>
             <a routerLink="/earrings">Earrings</a>
           </div>
@@ -21,8 +21,11 @@
         <img src="logo.png" alt="Endless Charms Logo" class="logo-img">
       </a>
       <div class="nav-icons">
-        <button class="icon-btn" routerLink="/cart">
+        <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
+          @if (cartCount > 0) {
+            <span class="cart-badge">{{ cartCount }}</span>
+          }
         </button>
       </div>
     </nav>
@@ -33,7 +36,7 @@
   <!-- 1st row -->
   <section class="row-one">
     <div class="image-container">
-      <img src="/images/hero-img-necklace.png" alt="Necklace" class="hero-image">
+      <img src="necklace hero.png" alt="Necklace" class="hero-image">
     </div>
     <div class="text-row-one">
       <p class="main-text">
@@ -56,7 +59,7 @@
     <div class="container">
       <div class="necklace-styles-grid">
         @for (necklace of necklaceStyles; track necklace.id) {
-          <a class="necklace-style-card" [routerLink]="['/product', necklace.id]">
+          <a class="necklace-style-card" routerLink="/30ct-tennis-necklace">
             <div class="necklace-style-image">
               <img [src]="necklace.image" [alt]="necklace.name">
             </div>
@@ -64,9 +67,6 @@
               <p class="necklace-style-label">{{ necklace.name }}</p>
               <div class="necklace-style-footer">
                 <p class="necklace-style-price">₱{{ necklace.price | number }}</p>
-                <button class="add-to-cart-btn" (click)="$event.preventDefault()">
-                  <img src="bag.png" alt="Add to Cart" class="cart-icon">
-                </button>
               </div>
             </div>
           </a>
@@ -100,9 +100,9 @@
         <ul class="footer-links">
           <li><a routerLink="/engagement-rings">Engagement Rings</a></li>
           <li><a routerLink="/wedding-bands">Wedding Bands</a></li>
-          <li><a routerLink="/necklace">Necklace</a></li>
+          <li><a routerLink="/necklaces">Necklaces</a></li>
+          <li><a routerLink="/bracelets">Bracelets</a></li>
           <li><a routerLink="/earrings">Earrings</a></li>
-          <li><a routerLink="/bracelets">Bracelet</a></li>
         </ul>
       </div>
       

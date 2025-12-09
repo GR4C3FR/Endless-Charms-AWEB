@@ -9,7 +9,7 @@
           <div class="dropdown-menu">
             <a routerLink="/engagement-rings">Engagement Rings</a>
             <a routerLink="/wedding-bands">Wedding Bands</a>
-            <a routerLink="/necklace">Necklace</a>
+            <a routerLink="/necklaces">Necklaces</a>
             <a routerLink="/bracelets">Bracelets</a>
             <a routerLink="/earrings">Earrings</a>
           </div>
@@ -21,15 +21,99 @@
         <img src="logo.png" alt="Endless Charms Logo" class="logo-img">
       </a>
       <div class="nav-icons">
-        <button class="icon-btn" routerLink="/cart">
+        <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
+          @if (cartItems.length > 0) {
+            <span class="cart-badge">{{ cartService.getCartCount() }}</span>
+          }
         </button>
       </div>
     </nav>
   </div>
 </header>
 
-<p>cart works!</p>
+<div class="cart-container">
+  <div class="cart-content">
+    <div class="cart-header">
+      <h1>Your Bag</h1>
+      <div class="cart-header-labels">
+        <span class="label-items">Items</span>
+        <span class="label-quantity">Quantity</span>
+        <span class="label-total">Total</span>
+      </div>
+    </div>
+
+    @if (cartItems.length === 0) {
+      <div class="empty-cart">
+        <p>Your bag is empty</p>
+        <a routerLink="/engagement-rings" class="continue-shopping">Continue Shopping</a>
+      </div>
+    } @else {
+      <div class="cart-items">
+        @for (item of cartItems; track item.uniqueKey) {
+          <div class="cart-item">
+            <div class="item-info">
+              <div class="item-image-container">
+                <img [src]="item.image" [alt]="item.name" class="item-image">
+              </div>
+              <div class="item-details">
+                <h3 class="item-name">{{ item.name }}</h3>
+                <p class="item-price">₱{{ item.price | number }}</p>
+                @if (item.metalType) {
+                  <p class="item-spec"><strong>Metal Type:</strong> {{ item.metalType }}</p>
+                }
+                @if (item.stone) {
+                  <p class="item-spec"><strong>Stone:</strong> {{ item.stone }}</p>
+                }
+                @if (item.caratWeight) {
+                  <p class="item-spec"><strong>Carat Weight:</strong> {{ item.caratWeight }}</p>
+                }
+                @if (item.ringSize) {
+                  <p class="item-spec"><strong>Ring Size:</strong> {{ item.ringSize }}</p>
+                }
+              </div>
+            </div>
+
+            <div class="item-quantity-wrapper">
+              <div class="item-quantity">
+                <button class="qty-btn" (click)="decreaseQuantity(item.uniqueKey!)">−</button>
+                <input type="number" [value]="item.quantity" readonly class="qty-input">
+                <button class="qty-btn" (click)="increaseQuantity(item.uniqueKey!)">+</button>
+              </div>
+              <button class="remove-item-btn" (click)="confirmRemove(item.uniqueKey!)">Remove</button>
+            </div>
+
+            <div class="item-total">
+              <p class="total-price">₱{{ (item.price * item.quantity) | number }}</p>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Remove Confirmation Modal -->
+      @if (showRemoveModal) {
+        <div class="modal-overlay" (click)="cancelRemove()">
+          <div class="modal-content" (click)="$event.stopPropagation()">
+            <h3>Remove Item</h3>
+            <p>Are you sure you want to remove this item from your bag?</p>
+            <div class="modal-actions">
+              <button class="modal-btn cancel-btn" (click)="cancelRemove()">Cancel</button>
+              <button class="modal-btn confirm-btn" (click)="confirmRemoveAction()">Remove</button>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span class="summary-label">Subtotal:</span>
+          <span class="summary-value">₱{{ getSubtotal() | number }}</span>
+        </div>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    }
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="main-footer">
@@ -55,9 +139,9 @@
         <ul class="footer-links">
           <li><a routerLink="/engagement-rings">Engagement Rings</a></li>
           <li><a routerLink="/wedding-bands">Wedding Bands</a></li>
-          <li><a routerLink="/necklace">Necklace</a></li>
+          <li><a routerLink="/necklaces">Necklaces</a></li>
+          <li><a routerLink="/bracelets">Bracelets</a></li>
           <li><a routerLink="/earrings">Earrings</a></li>
-          <li><a routerLink="/bracelets">Bracelet</a></li>
         </ul>
       </div>
       

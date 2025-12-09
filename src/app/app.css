@@ -1,0 +1,43 @@
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  animation: slideIn 0.3s ease-out;
+  min-width: 250px;
+  text-align: center;
+}
+
+.toast-notification.success {
+  background-color: #620418;
+  color: white;
+  border: 2px solid #620418;
+}
+
+.toast-notification.error {
+  background-color: #dc3545;
+  color: white;
+  border: 2px solid #dc3545;
+}
+
+.toast-notification.info {
+  background-color: #17a2b8;
+  color: white;
+  border: 2px solid #17a2b8;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

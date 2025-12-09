@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-engagement-rings',
@@ -10,6 +11,13 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./engagement-rings.css'],
 })
 export class EngagementRings {
+  cartCount = 0;
+
+  constructor(private cartService: CartService) {
+    this.cartService.cart$.subscribe(() => {
+      this.cartCount = this.cartService.getCartCount();
+    });
+  }
 
   ringStyles = [
     { id: 1, name: '1ct Round-Cut Solitaire Ring', price: 32000, image: '1ct Round-Cut Solitaire Ring.png', category: 'rings', inStock: true, label: '1ct Round-Cut Solitaire Ring', src: '/1ct-round-cut-solitaire-ring' },
@@ -22,4 +30,17 @@ export class EngagementRings {
     { id: 8, name: '1ct Pear-Cut Solitaire Ring', price: 32000, image: '1ct Pear-Cut Solitaire Ring.png', category: 'rings', inStock: true, label: '1ct Pear-Cut Solitaire Ring', src: '/1ct-pear-cut-solitaire-ring' },
     { id: 9, name: '1ct Assher-Cut Solitaire Ring', price: 32000, image: '1ct Assher-Cut Solitaire Ring.png', category: 'rings', inStock: true, label: '1ct Assher-Cut Solitaire Ring', src: '/1ct-assher-cut-solitaire-ring' }
   ];
+
+  addToCart(ring: any) {
+    this.cartService.addToCart({
+      id: `ring-${ring.id}`,
+      name: ring.name,
+      price: ring.price,
+      image: ring.image,
+      metalType: '14k White Gold',
+      stone: 'Moissanite',
+      caratWeight: '1ct',
+      ringSize: '4.5'
+    });
+  }
 }

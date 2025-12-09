@@ -9,7 +9,7 @@
           <div class="dropdown-menu">
             <a routerLink="/engagement-rings">Engagement Rings</a>
             <a routerLink="/wedding-bands">Wedding Bands</a>
-            <a routerLink="/necklace">Necklace</a>
+            <a routerLink="/necklaces">Necklaces</a>
             <a routerLink="/bracelets">Bracelets</a>
             <a routerLink="/earrings">Earrings</a>
           </div>
@@ -21,8 +21,11 @@
         <img src="logo.png" alt="Endless Charms Logo" class="logo-img">
       </a>
       <div class="nav-icons">
-        <button class="icon-btn" routerLink="/cart">
+        <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
+          @if (cartCount > 0) {
+            <span class="cart-badge">{{ cartCount }}</span>
+          }
         </button>
       </div>
     </nav>
@@ -33,7 +36,7 @@
   <!-- 1st row -->
   <section class="row-one">
     <div class="image-container">
-      <img src="/images/hero-img-engagement-ring.png" alt="Engagement Ring" class="hero-image">
+      <img src="engagement rings hero.png" alt="Engagement Ring" class="hero-image">
     </div>
     <div class="text-row-one">
       <p class="main-text">
@@ -64,9 +67,6 @@
               <p class="ring-style-label">{{ ring.name }}</p>
               <div class="ring-style-footer">
                 <p class="ring-style-price">₱{{ ring.price | number }}</p>
-                <button class="add-to-cart-btn" (click)="$event.preventDefault()">
-                  <img src="bag.png" alt="Add to Cart" class="cart-icon">
-                </button>
               </div>
             </div>
           </a>
@@ -101,9 +101,9 @@
         <ul class="footer-links">
           <li><a routerLink="/engagement-rings">Engagement Rings</a></li>
           <li><a routerLink="/wedding-bands">Wedding Bands</a></li>
-          <li><a routerLink="/necklace">Necklace</a></li>
+          <li><a routerLink="/necklaces">Necklaces</a></li>
+          <li><a routerLink="/bracelets">Bracelets</a></li>
           <li><a routerLink="/earrings">Earrings</a></li>
-          <li><a routerLink="/bracelets">Bracelet</a></li>
         </ul>
       </div>
       

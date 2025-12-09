@@ -3,7 +3,6 @@ import { Home } from './home/home';
 import { About } from './about/about';
 import { ContactComponent } from './contact/contact';
 import { Cart } from './cart/cart';
-import { ProductView } from './product-view/product-view';
 import { EngagementRings } from './engagement-rings/engagement-rings';
 import { WeddingBands } from './wedding-bands/wedding-bands';
 import { Necklace } from './necklace/necklace';
@@ -29,16 +28,21 @@ import { WeddingBandProduct7 } from './productViewOwnPage/wedding-bands/product7
 import { WeddingBandProduct8 } from './productViewOwnPage/wedding-bands/product8/product8';
 import { WeddingBandProduct9 } from './productViewOwnPage/wedding-bands/product9/product9';
 
+import { NecklaceProduct1 } from './productViewOwnPage/necklaces/product1/product1';
+import { BraceletProduct1 } from './productViewOwnPage/bracelets/product1/product1';
+import { EarringProduct1 } from './productViewOwnPage/earrings/product1/product1';
+import { EarringProduct2 } from './productViewOwnPage/earrings/product2/product2';
+import { EarringProduct3 } from './productViewOwnPage/earrings/product3/product3';
+
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: Home },
   { path: 'about', component: About },
   { path: 'contact', component: ContactComponent },
-  { path: 'cart', component: Cart },
-  { path: 'product/:id', component: ProductView },
+  { path: 'bag', component: Cart },
   { path: 'engagement-rings', component: EngagementRings },
   { path: 'wedding-bands', component: WeddingBands },
-  { path: 'necklace', component: Necklace },
+  { path: 'necklaces', component: Necklace },
   { path: 'bracelets', component: Bracelets },
   { path: 'earrings', component: Earrings },
   { path: '1ct-round-cut-solitaire-ring', component: Product1 },
@@ -50,13 +54,18 @@ export const routes: Routes = [
   { path: '1ct-heart-cut-solitaire-ring', component: Product7 },
   { path: '1ct-pear-cut-solitaire-ring', component: Product8 },
   { path: '1ct-assher-cut-solitaire-ring', component: Product9 }
-  ,{ path: 'classic-platinum-wedding-band', component: WeddingBandProduct1 }
-  ,{ path: 'titanium-satin-band', component: WeddingBandProduct2 }
-  ,{ path: 'rose-gold-matte-band', component: WeddingBandProduct3 }
-  ,{ path: 'white-gold-hammered-band', component: WeddingBandProduct4 }
-  ,{ path: 'classic-platinum-band', component: WeddingBandProduct5 }
-  ,{ path: 'hammered-gold-band', component: WeddingBandProduct6 }
-  ,{ path: 'matte-white-gold-band', component: WeddingBandProduct7 }
-  ,{ path: 'sculpted-edge-band', component: WeddingBandProduct8 }
-  ,{ path: 'satin-finish-band', component: WeddingBandProduct9 }
+  ,{ path: 'wedding-bands-set-a', component: WeddingBandProduct1 }
+  ,{ path: 'wedding-bands-set-b', component: WeddingBandProduct2 }
+  ,{ path: 'wedding-bands-set-c', component: WeddingBandProduct3 }
+  ,{ path: 'wedding-bands-set-d', component: WeddingBandProduct4 }
+  ,{ path: 'wedding-bands-set-e', component: WeddingBandProduct5 }
+  ,{ path: 'wedding-bands-set-f', component: WeddingBandProduct6 }
+  ,{ path: 'wedding-bands-set-g', component: WeddingBandProduct7 }
+  ,{ path: 'wedding-bands-set-h', component: WeddingBandProduct8 }
+  ,{ path: 'wedding-bands-set-i', component: WeddingBandProduct9 }
+  ,{ path: '30ct-tennis-necklace', component: NecklaceProduct1 }
+  ,{ path: '30ct-tennis-bracelet', component: BraceletProduct1 }
+  ,{ path: 'stud-earrings', component: EarringProduct1 }
+  ,{ path: 'cluster-set', component: EarringProduct2 }
+  ,{ path: 'oval-cut-green-emerald-earrings', component: EarringProduct3 }
 ];

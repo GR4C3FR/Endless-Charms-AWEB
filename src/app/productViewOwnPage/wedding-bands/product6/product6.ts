@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../../services/cart.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-wedding-band-product6',
@@ -10,11 +12,22 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./product6.css'],
 })
 export class WeddingBandProduct6 {
+  cartCount = 0;
+
+  constructor(
+    private cartService: CartService,
+    private notificationService: NotificationService
+  ) {
+    this.cartService.cart$.subscribe(() => {
+      this.cartCount = this.cartService.getCartCount();
+    });
+  }
+
   product = {
-    id: 6,
-    name: 'Hammered Gold Band',
-    price: 950,
-    image: 'hammered-gold-band.png',
+    id: '6',
+    name: 'Wedding Bands - Set F',
+    price: 42000,
+    image: 'Wedding Bands - Set F.png',
     category: 'wedding-bands',
     inStock: true,
     label: 'Hammered Gold Band',
@@ -33,14 +46,14 @@ export class WeddingBandProduct6 {
   quantity: number = 1;
 
   addToCart() {
-    console.log('Added to cart:', {
-      product: this.product.name,
-      metal: this.selectedMetal,
-      finish: this.selectedFinish,
-      width: this.selectedWidth,
-      ringSize: this.selectedRingSize,
-      quantity: this.quantity
+    this.cartService.addToCart({
+      id: this.product.id,
+      name: this.product.name,
+      price: this.product.price,
+      image: this.product.image
     });
+    
+    this.notificationService.showNotification(`${this.product.name} added to bag!`);
   }
 
   incrementRingSize() {

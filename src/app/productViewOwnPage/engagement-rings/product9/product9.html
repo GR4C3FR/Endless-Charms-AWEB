@@ -9,7 +9,7 @@
           <div class="dropdown-menu">
             <a routerLink="/engagement-rings">Engagement Rings</a>
             <a routerLink="/wedding-bands">Wedding Bands</a>
-            <a routerLink="/necklace">Necklace</a>
+            <a routerLink="/necklaces">Necklaces</a>
             <a routerLink="/bracelets">Bracelets</a>
             <a routerLink="/earrings">Earrings</a>
           </div>
@@ -21,76 +21,97 @@
         <img src="logo.png" alt="Endless Charms Logo" class="logo-img">
       </a>
       <div class="nav-icons">
-        <button class="icon-btn" routerLink="/cart">
+        <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
+          @if (cartCount > 0) {
+            <span class="cart-badge">{{ cartCount }}</span>
+          }
         </button>
       </div>
     </nav>
   </div>
 </header>
 
-<div class="product-detail-container">
-  <div class="product-left">
-    <div class="product-image-wrapper">
-      <img [src]="'assets/images/' + product.image" [alt]="product.name" class="product-image">
+<!-- Product Detail Section -->
+<section class="product-detail">
+  <div class="container">
+    <div class="product-layout">
+      <div class="product-image-section">
+        <div class="product-image-container" (click)="openImagePopup()">
+          <img [src]="'images/' + product.image" [alt]="product.name" class="product-image">
+        </div>
+      </div>
+      
+      <div class="product-info-section">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <p class="product-price">{{ product.price | number }}</p>
+        
+        <div class="product-options">
+          <div class="option-group">
+            <label class="option-label">Metal Type <span class="option-note">- Final price may vary depending on your selected gold type (14k or 18k).</span></label>
+            <div class="option-buttons">
+              @for (metal of product.metalTypes; track metal) {
+                <button 
+                  class="option-btn" 
+                  [class.active]="selectedMetal === metal"
+                  (click)="selectedMetal = metal">
+                  {{ metal }}
+                </button>
+              }
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <label class="option-label">Stones <span class="option-note">- Final price may vary depending on the type of stone you choose.</span></label>
+            <div class="option-buttons">
+              @for (stone of product.stoneTypes; track stone) {
+                <button 
+                  class="option-btn" 
+                  [class.active]="selectedStone === stone"
+                  (click)="selectedStone = stone">
+                  {{ stone }}
+                </button>
+              }
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <label class="option-label">Carat Size <span class="option-note">- Final price may vary depending on the carat size.</span></label>
+            <div class="quantity-selector">
+              <button class="qty-btn" (click)="decrementCarat()">-</button>
+              <span class="qty-value">{{ selectedCarat }}</span>
+              <button class="qty-btn" (click)="incrementCarat()">+</button>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <label class="option-label">Ring Size <span class="option-note">- Final price may vary on your ring size. (Standard Size)</span></label>
+            <div class="quantity-selector">
+              <button class="qty-btn" (click)="decrementRingSize()">-</button>
+              <span class="qty-value">{{ selectedRingSize }}</span>
+              <button class="qty-btn" (click)="incrementRingSize()">+</button>
+            </div>
+          </div>
+          
+          <p class="price-note">Current Price Indicated Depending on Preference*</p>
+          
+          <button class="add-to-bag-btn" (click)="addToCart()">ADD TO BAG</button>
+          <button class="buy-now-btn" (click)="buyNow()">BUY NOW</button>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="product-right">
-    <h1 class="product-title">{{ product.name }}</h1>
-    <p class="product-price">₱{{ product.price | number }} (14k Moissanite Stone)</p>
-
-    <div class="product-section">
-      <h3 class="section-title">Metal Type</h3>
-      <p class="section-description">Final price may vary depending on your selected gold type (14k or 18k).</p>
-      <div class="option-buttons">
-        <button *ngFor="let metal of product.metalTypes" 
-                [class.active]="selectedMetal === metal"
-                (click)="selectedMetal = metal"
-                class="option-btn">
-          {{ metal }}
-        </button>
-      </div>
+<!-- Image Popup Modal -->
+@if (showImagePopup) {
+  <div class="image-popup-overlay" (click)="closeImagePopup()">
+    <div class="image-popup-container">
+      <img [src]="'images/' + product.image" [alt]="product.name" class="popup-image">
     </div>
-
-    <div class="product-section">
-      <h3 class="section-title">Stones</h3>
-      <p class="section-description">Final price may vary depending on the type of stone you choose.</p>
-      <div class="option-buttons">
-        <button *ngFor="let stone of product.stoneTypes"
-                [class.active]="selectedStone === stone"
-                (click)="selectedStone = stone"
-                class="option-btn">
-          {{ stone }}
-        </button>
-      </div>
-    </div>
-
-    <div class="product-section">
-      <h3 class="section-title">Carat Size</h3>
-      <p class="section-description">Final price may vary depending on the carat size.</p>
-      <div class="quantity-selector">
-        <button class="quantity-btn" (click)="decrementCarat()">−</button>
-        <span class="quantity-value">{{ selectedCarat }}</span>
-        <button class="quantity-btn" (click)="incrementCarat()">+</button>
-      </div>
-    </div>
-
-    <div class="product-section">
-      <h3 class="section-title">Ring Size</h3>
-      <p class="section-description">Final price may vary on your ring size. (Standard Size)</p>
-      <div class="quantity-selector">
-        <button class="quantity-btn" (click)="decrementRingSize()">−</button>
-        <span class="quantity-value">{{ selectedRingSize }}</span>
-        <button class="quantity-btn" (click)="incrementRingSize()">+</button>
-      </div>
-    </div>
-
-    <p class="current-price-note">Current Price Indicated Depending on Preference*</p>
-
-    <button class="buy-now-btn" (click)="addToCart()">BUY NOW</button>
   </div>
-</div>
+}
+
 
 <!-- Footer -->
 <footer class="main-footer">
@@ -116,9 +137,9 @@
         <ul class="footer-links">
           <li><a routerLink="/engagement-rings">Engagement Rings</a></li>
           <li><a routerLink="/wedding-bands">Wedding Bands</a></li>
-          <li><a routerLink="/necklace">Necklace</a></li>
+          <li><a routerLink="/necklaces">Necklaces</a></li>
+          <li><a routerLink="/bracelets">Bracelets</a></li>
           <li><a routerLink="/earrings">Earrings</a></li>
-          <li><a routerLink="/bracelets">Bracelet</a></li>
         </ul>
       </div>
       
@@ -142,3 +163,4 @@
     </div>
   </div>
 </footer>
+

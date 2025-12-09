@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../../services/cart.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-wedding-band-product2',
@@ -10,15 +12,26 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./product2.css'],
 })
 export class WeddingBandProduct2 {
+  cartCount = 0;
+
+  constructor(
+    private cartService: CartService,
+    private notificationService: NotificationService
+  ) {
+    this.cartService.cart$.subscribe(() => {
+      this.cartCount = this.cartService.getCartCount();
+    });
+  }
+
   product = {
-    id: 2,
-    name: 'Titanium Satin Band',
-    price: 950,
-    image: 'yellow-gold-comfort-fit-band.png',
+    id: '2',
+    name: 'Wedding Bands - Set B',
+    price: 70000,
+    image: 'Wedding Bands - Set B.png',
     category: 'wedding-bands',
     inStock: true,
-    label: 'Titanium Satin Band',
-    src: '/titanium-satin-band',
+    label: 'Wedding Bands - Set B',
+    src: '/wedding-bands-set-b',
     description: 'Durable titanium band with a smooth satin finish, ideal for active lifestyles.',
     metalTypes: ['18K Yellow Gold', '14K White Gold', 'Platinum', 'Titanium'],
     finishTypes: ['Matte', 'Polished', 'Hammered', 'Satin'],
@@ -33,14 +46,14 @@ export class WeddingBandProduct2 {
   quantity: number = 1;
 
   addToCart() {
-    console.log('Added to cart:', {
-      product: this.product.name,
-      metal: this.selectedMetal,
-      finish: this.selectedFinish,
-      width: this.selectedWidth,
-      ringSize: this.selectedRingSize,
-      quantity: this.quantity
+    this.cartService.addToCart({
+      id: this.product.id,
+      name: this.product.name,
+      price: this.product.price,
+      image: this.product.image
     });
+    
+    this.notificationService.showNotification(`${this.product.name} added to bag!`);
   }
 
   incrementRingSize() {
