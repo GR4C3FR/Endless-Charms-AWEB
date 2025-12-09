@@ -23,14 +23,77 @@
       <div class="nav-icons">
         <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
-          @if (cartCount > 0) {
-            <span class="cart-badge">{{ cartCount }}</span>
-          }
+          <span class="cart-badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
         </button>
       </div>
     </nav>
   </div>
 </header>
+
+<!-- Product Detail Section -->
+<section class="product-detail">
+  <div class="container">
+    <div class="product-layout">
+      <div class="product-image-section">
+        <div class="product-image-container" (click)="openImagePopup()">
+          <img [src]="product.image && product.image.startsWith('/') ? product.image : 'images/' + product.image" [alt]="product.name" class="product-image">
+        </div>
+      </div>
+      
+      <div class="product-info-section">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <p class="product-price">₱{{ product.price | number }}</p>
+        
+        <div class="product-options">
+          <div class="option-group">
+            <label class="option-label">Metal Type <span class="option-note">- Final price may vary depending on your selected metal type.</span></label>
+            <div class="option-buttons">
+              <button *ngFor="let metal of product.metalTypes" 
+                class="option-btn" 
+                [class.active]="selectedMetal === metal"
+                (click)="selectedMetal = metal">
+                {{ metal }}
+              </button>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <label class="option-label">Stones <span class="option-note">- Final price may vary depending on the type of stone you choose.</span></label>
+            <div class="option-buttons">
+              <button *ngFor="let stone of product.stoneTypes" 
+                class="option-btn" 
+                [class.active]="selectedStone === stone"
+                (click)="selectedStone = stone">
+                {{ stone }}
+              </button>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <label class="option-label">Stone Size <span class="option-note">- Final price may vary depending on the stone size.</span></label>
+            <div class="quantity-selector">
+              <button class="qty-btn" (click)="decrementStoneSize()">-</button>
+              <span class="qty-value">{{ selectedStoneSize }}</span>
+              <button class="qty-btn" (click)="incrementStoneSize()">+</button>
+            </div>
+          </div>
+          
+          <p class="price-note">Current Price Indicated Depending on Preference*</p>
+          
+          <button class="add-to-bag-btn" (click)="addToCart()">ADD TO BAG</button>
+          <button class="buy-now-btn" (click)="buyNow()">BUY NOW</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Image Popup Modal -->
+<div *ngIf="showImagePopup" class="image-popup-overlay" (click)="closeImagePopup()">
+  <div class="image-popup-container">
+    <img [src]="product.image && product.image.startsWith('/') ? product.image : 'images/' + product.image" [alt]="product.name" class="popup-image">
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="main-footer">

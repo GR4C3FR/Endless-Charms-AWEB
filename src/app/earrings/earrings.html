@@ -23,9 +23,7 @@
       <div class="nav-icons">
         <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
-          @if (cartCount > 0) {
-            <span class="cart-badge">{{ cartCount }}</span>
-          }
+          <span class="cart-badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
         </button>
       </div>
     </nav>
@@ -56,19 +54,41 @@
 
     <div class="container">
       <div class="earrings-styles-grid">
-        @for (earring of earringStyles; track earring.id) {
-          <a class="earrings-style-card" [routerLink]="earring.id === 1 ? '/stud-earrings' : earring.id === 2 ? '/cluster-set' : '/oval-cut-green-emerald-earrings'">
-            <div class="earrings-style-image">
-              <img [src]="earring.image" [alt]="earring.name">
+        <a class="earrings-style-card" routerLink="/stud-earrings">
+          <div class="earrings-style-image">
+            <img src="/Stud%20Earrings.png" alt="Classic Diamond Studs">
+          </div>
+          <div class="earrings-style-info">
+            <p class="earrings-style-label">Classic Diamond Studs</p>
+            <div class="earrings-style-footer">
+              <p class="earrings-style-price">₱42,000</p>
             </div>
-            <div class="earrings-style-info">
-              <p class="earrings-style-label">{{ earring.name }}</p>
-              <div class="earrings-style-footer">
-                <p class="earrings-style-price">₱{{ earring.price | number }}</p>
-              </div>
+          </div>
+        </a>
+
+        <a class="earrings-style-card" routerLink="/cluster-set">
+          <div class="earrings-style-image">
+            <img src="/Cluster%20Set.png" alt="Cluster Set">
+          </div>
+          <div class="earrings-style-info">
+            <p class="earrings-style-label">Cluster Set</p>
+            <div class="earrings-style-footer">
+              <p class="earrings-style-price">₱245,000</p>
             </div>
-          </a>
-        }
+          </div>
+        </a>
+
+        <a class="earrings-style-card" routerLink="/oval-cut-green-emerald-earrings">
+          <div class="earrings-style-image">
+            <img src="/Oval%20-%20Cut%20Green%20Emerald%20Earrings.png" alt="Oval Cut Green Emerald Earrings">
+          </div>
+          <div class="earrings-style-info">
+            <p class="earrings-style-label">Oval Cut Green Emerald Earrings</p>
+            <div class="earrings-style-footer">
+              <p class="earrings-style-price">₱42,000</p>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
