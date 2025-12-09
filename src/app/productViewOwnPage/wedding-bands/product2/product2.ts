@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import { NotificationService } from '../../../services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-wedding-band-product2',
@@ -17,7 +18,8 @@ export class WeddingBandProduct2 {
 
   constructor(
     private cartService: CartService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) {
     this.cartService.cart$.subscribe(() => {
       this.cartCount = this.cartService.getCartCount();
@@ -51,7 +53,11 @@ export class WeddingBandProduct2 {
       id: this.product.id,
       name: this.product.name,
       price: this.product.price,
-      image: this.product.image
+      image: this.product.image,
+      metalType: this.selectedMetal,
+      finish: this.selectedFinish,
+      width: this.selectedWidth,
+      ringSize: this.selectedRingSize
     });
     
     this.notificationService.showNotification(`${this.product.name} added to bag!`);
@@ -71,7 +77,17 @@ export class WeddingBandProduct2 {
     }
   }
   buyNow() {
-    this.notificationService.showNotification('Redirecting to checkout...');
+    this.cartService.addToCart({
+      id: this.product.id,
+      name: this.product.name,
+      price: this.product.price,
+      image: this.product.image,
+      metalType: this.selectedMetal,
+      finish: this.selectedFinish,
+      width: this.selectedWidth,
+      ringSize: this.selectedRingSize
+    });
+    this.router.navigate(['/bag']);
   }
 
   openImagePopup() {

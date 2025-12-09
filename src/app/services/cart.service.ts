@@ -11,6 +11,8 @@ export interface CartItem {
   metalType?: string;
   stone?: string;
   chainLength?: string;
+  finish?: string;
+  width?: string;
   caratWeight?: string;
   ringSize?: string;
   uniqueKey?: string; // Unique identifier for cart items with different options
@@ -53,7 +55,7 @@ export class CartService {
   }
 
   private generateUniqueKey(item: Omit<CartItem, 'quantity' | 'uniqueKey'>): string {
-    return `${item.id}_${item.metalType || ''}_${item.stone || ''}_${item.chainLength || ''}_${item.caratWeight || ''}_${item.ringSize || ''}`;
+    return `${item.id}_${item.metalType || ''}_${item.stone || ''}_${item.chainLength || ''}_${item.finish || ''}_${item.width || ''}_${item.caratWeight || ''}_${item.ringSize || ''}`;
   }
 
   addToCart(item: Omit<CartItem, 'quantity' | 'uniqueKey'>) {

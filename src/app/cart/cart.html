@@ -23,9 +23,7 @@
       <div class="nav-icons">
         <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
-          @if (cartItems.length > 0) {
-            <span class="cart-badge">{{ cartService.getCartCount() }}</span>
-          }
+          <span *ngIf="cartItems.length > 0" class="cart-badge">{{ cartService.getCartCount() }}</span>
         </button>
       </div>
     </nav>
@@ -43,66 +41,59 @@
       </div>
     </div>
 
-    @if (cartItems.length === 0) {
+    <ng-container *ngIf="cartItems.length === 0; else hasItems">
       <div class="empty-cart">
         <p>Your bag is empty</p>
         <a routerLink="/engagement-rings" class="continue-shopping">Continue Shopping</a>
       </div>
-    } @else {
+    </ng-container>
+
+    <ng-template #hasItems>
       <div class="cart-items">
-        @for (item of cartItems; track item.uniqueKey) {
-          <div class="cart-item">
-            <div class="item-info">
-              <div class="item-image-container">
-                <img [src]="item.image" [alt]="item.name" class="item-image">
-              </div>
-              <div class="item-details">
-                <h3 class="item-name">{{ item.name }}</h3>
-                <p class="item-price">₱{{ item.price | number }}</p>
-                @if (item.metalType) {
-                  <p class="item-spec"><strong>Metal Type:</strong> {{ item.metalType }}</p>
-                }
-                @if (item.stone) {
-                  <p class="item-spec"><strong>Stone:</strong> {{ item.stone }}</p>
-                }
-                @if (item.caratWeight) {
-                  <p class="item-spec"><strong>Carat Weight:</strong> {{ item.caratWeight }}</p>
-                }
-                @if (item.ringSize) {
-                  <p class="item-spec"><strong>Ring Size:</strong> {{ item.ringSize }}</p>
-                }
-              </div>
+        <div *ngFor="let item of cartItems; trackBy: trackByUniqueKey" class="cart-item">
+          <div class="item-info">
+            <div class="item-image-container">
+              <img [src]="item.image" [alt]="item.name" class="item-image">
             </div>
-
-            <div class="item-quantity-wrapper">
-              <div class="item-quantity">
-                <button class="qty-btn" (click)="decreaseQuantity(item.uniqueKey!)">−</button>
-                <input type="number" [value]="item.quantity" readonly class="qty-input">
-                <button class="qty-btn" (click)="increaseQuantity(item.uniqueKey!)">+</button>
-              </div>
-              <button class="remove-item-btn" (click)="confirmRemove(item.uniqueKey!)">Remove</button>
-            </div>
-
-            <div class="item-total">
-              <p class="total-price">₱{{ (item.price * item.quantity) | number }}</p>
+            <div class="item-details">
+              <h3 class="item-name">{{ item.name }}</h3>
+              <p class="item-price">₱{{ item.price | number }}</p>
+              <p *ngIf="item.metalType" class="item-spec"><strong>Metal Type:</strong> {{ item.metalType }}</p>
+              <p *ngIf="item.stone" class="item-spec"><strong>Stone:</strong> {{ item.stone }}</p>
+              <p *ngIf="item.caratWeight" class="item-spec"><strong>Carat Weight:</strong> {{ item.caratWeight }}</p>
+              <p *ngIf="item.ringSize" class="item-spec"><strong>Ring Size:</strong> {{ item.ringSize }}</p>
+              <p *ngIf="item.chainLength" class="item-spec"><strong>Length:</strong> {{ item.chainLength }}</p>
+              <p *ngIf="item.finish" class="item-spec"><strong>Finish:</strong> {{ item.finish }}</p>
+              <p *ngIf="item.width" class="item-spec"><strong>Width:</strong> {{ item.width }}</p>
             </div>
           </div>
-        }
+
+          <div class="item-quantity-wrapper">
+            <div class="item-quantity">
+              <button class="qty-btn" (click)="decreaseQuantity(item.uniqueKey!)">−</button>
+              <input type="number" [value]="item.quantity" readonly class="qty-input">
+              <button class="qty-btn" (click)="increaseQuantity(item.uniqueKey!)">+</button>
+            </div>
+            <button class="remove-item-btn" (click)="confirmRemove(item.uniqueKey!)">Remove</button>
+          </div>
+
+          <div class="item-total">
+            <p class="total-price">₱{{ (item.price * item.quantity) | number }}</p>
+          </div>
+        </div>
       </div>
 
       <!-- Remove Confirmation Modal -->
-      @if (showRemoveModal) {
-        <div class="modal-overlay" (click)="cancelRemove()">
-          <div class="modal-content" (click)="$event.stopPropagation()">
-            <h3>Remove Item</h3>
-            <p>Are you sure you want to remove this item from your bag?</p>
-            <div class="modal-actions">
-              <button class="modal-btn cancel-btn" (click)="cancelRemove()">Cancel</button>
-              <button class="modal-btn confirm-btn" (click)="confirmRemoveAction()">Remove</button>
-            </div>
+      <div *ngIf="showRemoveModal" class="modal-overlay" (click)="cancelRemove()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h3>Remove Item</h3>
+          <p>Are you sure you want to remove this item from your bag?</p>
+          <div class="modal-actions">
+            <button class="modal-btn cancel-btn" (click)="cancelRemove()">Cancel</button>
+            <button class="modal-btn confirm-btn" (click)="confirmRemoveAction()">Remove</button>
           </div>
         </div>
-      }
+      </div>
 
       <div class="cart-summary">
         <div class="summary-row">
@@ -111,7 +102,7 @@
         </div>
         <button class="checkout-btn">Checkout</button>
       </div>
-    }
+    </ng-template>
   </div>
 </div>
 

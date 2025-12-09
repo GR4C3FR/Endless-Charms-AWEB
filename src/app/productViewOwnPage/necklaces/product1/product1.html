@@ -23,9 +23,7 @@
       <div class="nav-icons">
         <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
-          @if (cartCount > 0) {
-            <span class="cart-badge">{{ cartCount }}</span>
-          }
+          <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
         </button>
       </div>
     </nav>
@@ -49,29 +47,25 @@
         <div class="product-options">
           <div class="option-group">
             <label class="option-label">Metal Type <span class="option-note">- Final price may vary depending on your selected metal type.</span></label>
-            <div class="option-buttons">
-              @for (metal of product.metalTypes; track metal) {
-                <button 
+              <div class="option-buttons">
+                <button *ngFor="let metal of product.metalTypes" 
                   class="option-btn" 
                   [class.active]="selectedMetal === metal"
                   (click)="selectedMetal = metal">
                   {{ metal }}
                 </button>
-              }
-            </div>
+              </div>
           </div>
           
           <div class="option-group">
             <label class="option-label">Stones <span class="option-note">- Final price may vary depending on the type of stone you choose.</span></label>
             <div class="option-buttons">
-              @for (stone of product.stoneTypes; track stone) {
-                <button 
-                  class="option-btn" 
-                  [class.active]="selectedStone === stone"
-                  (click)="selectedStone = stone">
-                  {{ stone }}
-                </button>
-              }
+              <button *ngFor="let stone of product.stoneTypes" 
+                class="option-btn" 
+                [class.active]="selectedStone === stone"
+                (click)="selectedStone = stone">
+                {{ stone }}
+              </button>
             </div>
           </div>
           
@@ -95,13 +89,11 @@
 </section>
 
 <!-- Image Popup Modal -->
-@if (showImagePopup) {
-  <div class="image-popup-overlay" (click)="closeImagePopup()">
-    <div class="image-popup-container">
-      <img [src]="product.image && product.image.startsWith('/') ? product.image : 'images/' + product.image" [alt]="product.name" class="popup-image">
-    </div>
+<div *ngIf="showImagePopup" class="image-popup-overlay" (click)="closeImagePopup()">
+  <div class="image-popup-container">
+    <img [src]="product.image && product.image.startsWith('/') ? product.image : 'images/' + product.image" [alt]="product.name" class="popup-image">
   </div>
-}
+</div>
 
 <!-- Footer -->
 <footer class="main-footer">

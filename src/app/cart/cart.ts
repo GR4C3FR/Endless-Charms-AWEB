@@ -70,4 +70,8 @@ export class Cart implements OnInit {
   removeItem(uniqueKey: string) {
     this.cartService.removeFromCart(uniqueKey);
   }
+
+  trackByUniqueKey(index: number, item: CartItem) {
+    return item.uniqueKey;
+  }
 }
