@@ -10,6 +10,7 @@ interface Product {
   image: string;
   category: string;
   inStock: boolean;
+  urlSrc?: string;
 }
 
 interface Feature {
@@ -61,18 +62,18 @@ export class Home {
 
   // Top-Selling Products with @for directive
   topSellingProducts: Product[] = [
-    { id: 1, name: '1ct Assher-Cut Solitaire Ring', price: 32000, image: '1ct-assher-cut-solitaire-ring.png', category: 'rings', inStock: true },
-    { id: 2, name: '1ct Round-Cut Solitaire Ring', price: 32000, image: '1ct-round-cut-solitaire-ring.png', category: 'rings', inStock: true },
-    { id: 3, name: '1ct Oval-Cut Solitaire Ring', price: 32000, image: '1ct-oval-cut-solitaire-ring.png', category: 'rings', inStock: true },
-    { id: 4, name: '1ct Emerald-Cut Solitaire Ring', price: 32000, image: '1ct-emerald-cut-solitaire-ring.png', category: 'rings', inStock: true },
-    { id: 5, name: 'Wedding Bands - Set C', price: 62000, image: 'wedding-bands-set-c.png', category: 'bands', inStock: true },
-    { id: 6, name: 'Wedding Bands - Set B', price: 70000, image: 'wedding-bands-set-b.png', category: 'bands', inStock: true },
-    { id: 7, name: 'Wedding Bands - Set F', price: 42000, image: 'wedding-bands-set-f.png', category: 'bands', inStock: true },
-    { id: 8, name: 'Wedding Bands - Set H', price: 72000, image: 'wedding-bands-set-h.png', category: 'bands', inStock: true },
-    { id: 9, name: '1ct Round Stud Earrings', price: 42000, image: '1ct-round-stud-earrings.png', category: 'earrings', inStock: true },
-    { id: 10, name: 'Oval-Cut Green Emerald Earrings', price: 42000, image: 'oval-cut-green-emerald-earrings.png', category: 'earrings', inStock: true },
-    { id: 11, name: '.30ct Tennis Bracelet', price: 149000, image: '30ct-tennis-bracelet.png', category: 'bracelets', inStock: true },
-    { id: 12, name: '.30ct Tennis Necklace', price: 195000, image: '30ct-tennis-necklace.png', category: 'necklaces', inStock: true }
+    { id: 1, name: '1ct Assher-Cut Solitaire Ring', price: 32000, image: '1ct-assher-cut-solitaire-ring.png', category: 'rings', inStock: true, urlSrc: '/1ct-assher-cut-solitaire-ring' },
+    { id: 2, name: '1ct Round-Cut Solitaire Ring', price: 32000, image: '1ct-round-cut-solitaire-ring.png', category: 'rings', inStock: true, urlSrc: '/1ct-round-cut-solitaire-ring' },
+    { id: 3, name: '1ct Oval-Cut Solitaire Ring', price: 32000, image: '1ct-oval-cut-solitaire-ring.png', category: 'rings', inStock: true, urlSrc: '/1ct-oval-cut-solitaire-ring' },
+    { id: 4, name: '1ct Emerald-Cut Solitaire Ring', price: 32000, image: '1ct-emerald-cut-solitaire-ring.png', category: 'rings', inStock: true, urlSrc: '/1ct-emerald-cut-solitaire-ring' },
+    { id: 5, name: 'Wedding Bands - Set C', price: 62000, image: 'wedding-bands-set-c.png', category: 'bands', inStock: true, urlSrc: '/wedding-bands-set-c' },
+    { id: 6, name: 'Wedding Bands - Set B', price: 70000, image: 'wedding-bands-set-b.png', category: 'bands', inStock: true, urlSrc: '/wedding-bands-set-b' },
+    { id: 7, name: 'Wedding Bands - Set F', price: 42000, image: 'wedding-bands-set-f.png', category: 'bands', inStock: true, urlSrc: '/wedding-bands-set-f' },
+    { id: 8, name: 'Wedding Bands - Set H', price: 72000, image: 'wedding-bands-set-h.png', category: 'bands', inStock: true, urlSrc: '/wedding-bands-set-h' },
+    { id: 9, name: '1ct Round Stud Earrings', price: 42000, image: '1ct-round-stud-earrings.png', category: 'earrings', inStock: true, urlSrc: '/stud-earrings' },
+    { id: 10, name: 'Oval-Cut Green Emerald Earrings', price: 42000, image: 'oval-cut-green-emerald-earrings.png', category: 'earrings', inStock: true, urlSrc: '/oval-cut-green-emerald-earrings' },
+    { id: 11, name: '.30ct Tennis Bracelet', price: 149000, image: '30ct-tennis-bracelet.png', category: 'bracelets', inStock: true, urlSrc: '/30ct-tennis-bracelet' },
+    { id: 12, name: '.30ct Tennis Necklace', price: 195000, image: '30ct-tennis-necklace.png', category: 'necklaces', inStock: true, urlSrc: '/30ct-tennis-necklace' }
   ];
 
   // Ring styles for engagement section

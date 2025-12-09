@@ -23,9 +23,7 @@
       <div class="nav-icons">
         <button class="icon-btn" routerLink="/bag">
           <img src="bag.png" alt="Shopping Bag" class="bag-icon">
-          @if (cartCount > 0) {
-            <span class="cart-badge">{{ cartCount }}</span>
-          }
+          <span class="cart-badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
         </button>
       </div>
     </nav>
@@ -47,31 +45,22 @@
     <h2 class="section-title">Top-Selling Pieces</h2>
     
     <div class="products-grid">
-      @for (product of getDisplayedProducts(); track product.id) {
-        <div class="product-card">
-          <div class="product-image">
-            <img [src]="product.image" [alt]="product.name">
-          </div>
-          <div class="product-info">
-            <h3 class="product-name">{{ product.name }}</h3>
-            <div class="product-footer">
-              <p class="product-price">₱{{ product.price | number }}</p>
-            </div>
+      <a *ngFor="let product of getDisplayedProducts()" class="product-card" [routerLink]="product.urlSrc">
+        <div class="product-image">
+          <img [src]="'/' + product.image" [alt]="product.name">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{{ product.name }}</h3>
+          <div class="product-footer">
+            <p class="product-price">₱{{ product.price | number }}</p>
           </div>
         </div>
-      }
+      </a>
     </div>
     
-    <!-- Toggle button with @if/@else -->
-    @if (!showAllProducts) {
-      <button class="view-more-btn" (click)="toggleProducts()">
-        View More Products
-      </button>
-    } @else {
-      <button class="view-more-btn" (click)="toggleProducts()">
-        Show Less
-      </button>
-    }
+    <!-- Toggle button -->
+    <button *ngIf="!showAllProducts" class="view-more-btn" (click)="toggleProducts()">View More Products</button>
+    <button *ngIf="showAllProducts" class="view-more-btn" (click)="toggleProducts()">Show Less</button>
   </div>
 </section>
 
@@ -93,14 +82,12 @@
   
   <div class="container">
     <div class="ring-styles-grid">
-      @for (style of ringStyles; track style.name) {
-        <div class="ring-style-card">
-          <div class="ring-style-image">
-            <img [src]="style.image" [alt]="style.name">
-          </div>
-          <p class="ring-style-label">{{ style.label }}</p>
+      <div *ngFor="let style of ringStyles" class="ring-style-card">
+        <div class="ring-style-image">
+          <img [src]="'/' + style.image" [alt]="style.name">
         </div>
-      }
+        <p class="ring-style-label">{{ style.label }}</p>
+      </div>
     </div>
   </div>
 </section>
@@ -119,15 +106,13 @@
   <div class="container">
     <h2 class="section-title">Why Choose Endless Charms?</h2>
     <div class="features-grid">
-      @for (feature of features; track feature.title) {
-        <div class="feature-card">
-          <div class="feature-icon">
-            <img [src]="feature.icon" [alt]="feature.title">
-          </div>
-          <h3 class="feature-title">{{ feature.title }}</h3>
-          <p class="feature-desc">{{ feature.description }}</p>
+      <div *ngFor="let feature of features" class="feature-card">
+        <div class="feature-icon">
+          <img [src]="'/' + feature.icon" [alt]="feature.title">
         </div>
-      }
+        <h3 class="feature-title">{{ feature.title }}</h3>
+        <p class="feature-desc">{{ feature.description }}</p>
+      </div>
     </div>
   </div>
 </section>
@@ -139,12 +124,10 @@
     <div class="carousel-container">
       <button class="carousel-btn prev" (click)="prevReview()">‹</button>
       <div class="carousel-wrapper">
-        <div class="carousel-track">
-          @for (image of reviewImages; track image) {
-            <div class="carousel-slide">
-              <img [src]="image" [alt]="'Customer Review ' + (reviewImages.indexOf(image) + 1)">
-            </div>
-          }
+          <div class="carousel-track">
+          <div *ngFor="let image of reviewImages" class="carousel-slide">
+            <img [src]="'/' + image" [alt]="'Customer Review ' + (reviewImages.indexOf(image) + 1)">
+          </div>
         </div>
       </div>
       <button class="carousel-btn next" (click)="nextReview()">›</button>
