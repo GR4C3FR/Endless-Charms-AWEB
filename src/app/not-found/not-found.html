@@ -1,0 +1,59 @@
+<!-- Navigation Header -->
+<header class="main-header">
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-links">
+        <a routerLink="/home" class="nav-link">HOME</a>
+        <div class="nav-item">
+          <span class="nav-link">SHOP</span>
+          <div class="dropdown-menu">
+            <a routerLink="/engagement-rings">Engagement Rings</a>
+            <a routerLink="/wedding-bands">Wedding Bands</a>
+            <a routerLink="/necklaces">Necklaces</a>
+            <a routerLink="/bracelets">Bracelets</a>
+            <a routerLink="/earrings">Earrings</a>
+          </div>
+        </div>
+        <a routerLink="/contact" class="nav-link">CONTACT</a>
+        <a routerLink="/about" class="nav-link">ABOUT</a>
+      </div>
+      <a routerLink="/home" class="logo">
+        <img src="logo.png" alt="Endless Charms Logo" class="logo-img">
+      </a>
+      <div class="nav-icons">
+        <button class="icon-btn" routerLink="/bag">
+          <img src="bag.png" alt="Shopping Bag" class="bag-icon">
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- 404 Error Section -->
+<section class="error-container">
+  <div class="error-content">
+    <div class="error-code">404</div>
+    <div class="error-icon">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#620418" stroke-width="2" opacity="0.3"/>
+        <g transform="translate(100, 100)">
+          <path d="M -30 -20 Q -30 0 -20 20 M 0 -30 L 0 30 M 20 -20 Q 20 0 30 20" 
+                fill="none" stroke="#620418" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <h1 class="error-title">Oops! Page Not Found</h1>
+    <p class="error-message">
+      We couldn't find what you're looking for. The page you're searching for doesn't exist or has been moved.
+    </p>
+    <p class="error-subtitle">
+      Like a rare gemstone, this page is truly one-of-a-kind... and not in a good way!
+    </p>
+    
+    <div class="error-actions">
+      <a routerLink="/home" class="btn-primary">Return to Home</a>
+      <a routerLink="/engagement-rings" class="btn-secondary">Browse Collections</a>
+    </div>
+    
+  </div>
+</section>

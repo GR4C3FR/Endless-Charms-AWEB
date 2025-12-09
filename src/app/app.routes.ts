@@ -8,6 +8,7 @@ import { WeddingBands } from './wedding-bands/wedding-bands';
 import { Necklace } from './necklace/necklace';
 import { Bracelets } from './bracelets/bracelets';
 import { Earrings } from './earrings/earrings';
+import { NotFound } from './not-found/not-found';
 import { Product1 } from './productViewOwnPage/engagement-rings/product1/product1';
 import { Product2 } from './productViewOwnPage/engagement-rings/product2/product2';
 import { Product3 } from './productViewOwnPage/engagement-rings/product3/product3';
@@ -68,4 +69,5 @@ export const routes: Routes = [
   ,{ path: 'stud-earrings', component: EarringProduct1 }
   ,{ path: 'cluster-set', component: EarringProduct2 }
   ,{ path: 'oval-cut-green-emerald-earrings', component: EarringProduct3 }
+  ,{ path: '**', component: NotFound }
 ];
